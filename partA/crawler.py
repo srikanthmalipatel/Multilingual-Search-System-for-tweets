@@ -12,19 +12,26 @@
 
 from twython import Twython
 from twython import TwythonStreamer
+import json, io
 
 consumer_key = "Fpsk6Yi6owCPtLjSXaUoZEK7c"
 consumer_secret_key = "YezwQhE3Kh3dgXGNVGXUOYhXmTkE38QgmbpToXTc29DZWEnNuF"
 access_token = "140017490-REcjx2p6YphicskjJkl61PrHP5hNsYCgdVOoOflP"
 access_secret_token = "lHrn7XJiwlnggxFuahDdDkphewnWmIXuvIpE6dAz1NMhj"
+tweet_count=0
+
 
 class MyStreamer(TwythonStreamer):
     def on_success(self, data):
         if 'text' in data:
-            print data['text'].encode('utf-8')
-        
+            with io.open('tweet_data.txt', 'w', encoding='utf-8') as f:
+                print data
+                f.write(unicode(json.dumps(data, ensure_ascii=False)))
+
+
     def on_error(self, status_code, data):
         print status_code
 
-stream = MyStreamer(consumer_key, consumer_secret_key, access_token, access_secret_token)
-stream.statuses.filter(track="lol", language="en")
+if __name__ == '__main__':
+    stream = MyStreamer(consumer_key, consumer_secret_key, access_token, access_secret_token)
+    stream.statuses.filter(track="lol, modi, bernie", language="en")
