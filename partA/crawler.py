@@ -15,10 +15,10 @@ from twython import TwythonStreamer
 import json, io
 import sys
 
-consumer_key = "Fpsk6Yi6owCPtLjSXaUoZEK7c"
-consumer_secret_key = "YezwQhE3Kh3dgXGNVGXUOYhXmTkE38QgmbpToXTc29DZWEnNuF"
-access_token = "140017490-REcjx2p6YphicskjJkl61PrHP5hNsYCgdVOoOflP"
-access_secret_token = "lHrn7XJiwlnggxFuahDdDkphewnWmIXuvIpE6dAz1NMhj"
+consumer_key = ""
+consumer_secret_key = ""
+access_token = ""
+access_secret_token = ""
 
 # Keywords
 keywords_en = "presidential campaign, #POTUS, "
@@ -45,8 +45,8 @@ class MyStreamer(TwythonStreamer):
             print tweet_count_ru
 
             # when you reach certian number of tweets then just dump the list into a file
-            if tweet_count_ru == 3:
-                with io.open('tweet_data.txt', 'a', encoding='utf-8') as f:
+            if tweet_count_ru == 200:
+                with io.open('tweet_data.txt', 'w', encoding='utf-8') as f:
                     f.write(unicode(json.dumps(tweet_list, ensure_ascii=False)))
                 sys.exit()
 
