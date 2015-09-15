@@ -45,7 +45,7 @@ class MyStreamer(TwythonStreamer):
 
             # when you reach certian number of tweets then just dump the list into a file
             if tweet_count == 200:
-                with io.open('tweet_data_de_1.txt', 'w', encoding='utf-8') as f:
+                with io.open('tweet_data_ru_4.txt', 'w', encoding='utf-8') as f:
                     f.write(unicode(json.dumps(tweet_list, ensure_ascii=False)))
                 sys.exit()
 
@@ -55,4 +55,4 @@ class MyStreamer(TwythonStreamer):
 
 if __name__ == '__main__':
     stream = MyStreamer(consumer_key, consumer_secret_key, access_token, access_secret_token)
-    stream.statuses.filter(track=keywords_de, language="de")
+    stream.statuses.filter(track=keywords_ru, language="ru")
