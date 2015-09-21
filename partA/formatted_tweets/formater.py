@@ -35,15 +35,9 @@ def load(file):
         ftweet['lang'] = tweet['lang']
         if tweet['lang'] == 'en':
             ftweet['text_en'] = tweet['text']
-            ftweet['text_ru'] = ""
-            ftweet['text_de'] = ""
         elif tweet['lang'] == 'ru':
-            ftweet['text_en'] = ""
             ftweet['text_ru'] = tweet['text']
-            ftweet['text_de'] = ""
         elif tweet['lang'] == 'de':
-            ftweet['text_en'] = ""
-            ftweet['text_ru'] = ""
             ftweet['text_de'] = tweet['text']
         # screen name
         ftweet['screen_name'] = tweet['user']['screen_name']
@@ -63,9 +57,9 @@ def load(file):
         ftweets.append(ftweet)
 
 
-    with io.open('raw_tweet_en.txt', 'w', encoding='utf-8') as f:
+    with io.open('tweet_de_1.json', 'w', encoding='utf-8') as f:
         f.write(unicode(json.dumps(ftweets, ensure_ascii=False)))
 
 if __name__ == '__main__':
-    file = open('tweet_data_en_1.txt', 'r')
+    file = open('../tweet_data_de_1.txt', 'r')
     load(file)
